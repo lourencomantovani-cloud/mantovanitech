@@ -9,7 +9,7 @@ export function PhoneMockup() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveScreen((prev) => (prev + 1) % 3);
-    }, 4000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -34,64 +34,170 @@ export function PhoneMockup() {
     }
   ];
 
-  const Screen = screens[activeScreen];
-  const IconComponent = Screen.icon;
-
   return (
-    <div className="relative h-96 md:h-full flex items-center justify-center">
-      {/* Phone Frame */}
-      <div className="relative w-72 h-96 bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-2xl border-8 border-slate-700 overflow-hidden">
-        {/* Notch */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-7 bg-slate-900 rounded-b-3xl z-10"></div>
+    <div className="relative flex items-center justify-center py-8">
+      {/* Tablet Frame — portrait: largura menor que altura */}
+      <div
+        style={{
+          width: '260px',
+          height: '360px',
+          background: 'linear-gradient(135deg, #1e293b, #0f172a)',
+          borderRadius: '24px',
+          border: '8px solid #334155',
+          boxShadow: '0 25px 60px rgba(0,0,0,0.4), 0 0 40px rgba(16,185,129,0.15)',
+          position: 'relative',
+          overflow: 'hidden',
+          flexShrink: 0,
+        }}
+      >
+        {/* Camera / Notch */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '10px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '8px',
+            height: '8px',
+            background: '#475569',
+            borderRadius: '50%',
+            zIndex: 10,
+          }}
+        />
 
-        {/* Screen Content */}
-        <div className="absolute inset-8 top-10 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden">
-          {/* Screen Transitions */}
+        {/* Screen area */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: '4px',
+            borderRadius: '18px',
+            overflow: 'hidden',
+            background: '#0f172a',
+          }}
+        >
           {screens.map((screen, idx) => {
+            const IconComp = screen.icon;
             const isActive = idx === activeScreen;
             return (
               <div
                 key={idx}
-                className={`absolute inset-0 flex flex-col items-center justify-center p-6 transition-all duration-1000 ${
-                  isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                }`}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '24px',
+                  opacity: isActive ? 1 : 0,
+                  transform: isActive ? 'scale(1)' : 'scale(0.95)',
+                  transition: 'opacity 0.8s ease, transform 0.8s ease',
+                }}
               >
-                {/* Animated Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${screen.color} opacity-10`}></div>
+                {/* Background glow */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: `linear-gradient(135deg, ${idx === 0 ? '#10b981' : idx === 1 ? '#06b6d4' : '#10b981'}, ${idx === 0 ? '#059669' : idx === 1 ? '#0891b2' : '#06b6d4'})`,
+                    opacity: 0.08,
+                  }}
+                />
 
-                {/* Content */}
-                <div className="relative z-10 text-center space-y-4">
-                  <div className={`w-16 h-16 mx-auto bg-gradient-to-br ${screen.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                    <IconComponent className="text-white" size={32} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">{screen.title}</h3>
-                  <p className="text-sm text-slate-300">{screen.subtitle}</p>
+                {/* Icon */}
+                <div
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    background: `linear-gradient(135deg, ${idx === 0 ? '#10b981, #059669' : idx === 1 ? '#06b6d4, #0891b2' : '#10b981, #06b6d4'})`,
+                    borderRadius: '16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '16px',
+                    boxShadow: '0 8px 24px rgba(16,185,129,0.3)',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}
+                >
+                  <IconComp color="white" size={28} />
+                </div>
 
-                  {/* Animated Dots */}
-                  <div className="flex gap-2 justify-center pt-4">
-                    {[...Array(3)].map((_, i) => (
-                      <div
-                        key={i}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          i === activeScreen
-                            ? 'bg-emerald-400 w-6'
-                            : 'bg-slate-600'
-                        }`}
-                      ></div>
-                    ))}
-                  </div>
+                {/* Title */}
+                <h3
+                  style={{
+                    color: 'white',
+                    fontWeight: 700,
+                    fontSize: '18px',
+                    textAlign: 'center',
+                    marginBottom: '8px',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}
+                >
+                  {screen.title}
+                </h3>
+
+                {/* Subtitle */}
+                <p
+                  style={{
+                    color: '#94a3b8',
+                    fontSize: '13px',
+                    textAlign: 'center',
+                    position: 'relative',
+                    zIndex: 1,
+                    marginBottom: '20px',
+                  }}
+                >
+                  {screen.subtitle}
+                </p>
+
+                {/* Dots */}
+                <div style={{ display: 'flex', gap: '6px', position: 'relative', zIndex: 1 }}>
+                  {[0, 1, 2].map((i) => (
+                    <div
+                      key={i}
+                      style={{
+                        height: '6px',
+                        width: i === activeScreen ? '20px' : '6px',
+                        borderRadius: '3px',
+                        background: i === activeScreen ? '#10b981' : '#475569',
+                        transition: 'width 0.3s ease, background 0.3s ease',
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Home Button */}
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-slate-600 rounded-full"></div>
+        {/* Home bar */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '6px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60px',
+            height: '3px',
+            background: '#475569',
+            borderRadius: '2px',
+          }}
+        />
       </div>
 
-      {/* Glow Effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-3xl blur-3xl -z-10"></div>
+      {/* Glow behind */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(ellipse at center, rgba(16,185,129,0.15) 0%, transparent 70%)',
+          borderRadius: '32px',
+          zIndex: -1,
+          pointerEvents: 'none',
+        }}
+      />
     </div>
   );
 }
