@@ -18,47 +18,76 @@ export function PhoneMockup() {
       icon: Code,
       title: t('features.development'),
       subtitle: t('features.developmentSub'),
-      color: 'from-emerald-400 to-emerald-600'
+      gradientStart: '#10b981',
+      gradientEnd: '#059669',
     },
     {
       icon: Zap,
       title: t('features.performance'),
       subtitle: t('features.performanceSub'),
-      color: 'from-cyan-400 to-cyan-600'
+      gradientStart: '#06b6d4',
+      gradientEnd: '#0891b2',
     },
     {
       icon: Shield,
       title: t('features.security'),
       subtitle: t('features.securitySub'),
-      color: 'from-emerald-400 to-cyan-600'
-    }
+      gradientStart: '#10b981',
+      gradientEnd: '#06b6d4',
+    },
   ];
 
   return (
-    <div className="relative flex items-center justify-center py-8">
-      {/* Tablet Frame — portrait: largura menor que altura */}
+    /* Outer wrapper — takes full height of grid cell, centers content */
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        minHeight: '420px',
+        position: 'relative',
+      }}
+    >
+      {/* Glow behind the device */}
       <div
         style={{
-          width: '260px',
-          height: '360px',
-          background: 'linear-gradient(135deg, #1e293b, #0f172a)',
-          borderRadius: '24px',
-          border: '8px solid #334155',
-          boxShadow: '0 25px 60px rgba(0,0,0,0.4), 0 0 40px rgba(16,185,129,0.15)',
+          position: 'absolute',
+          width: '300px',
+          height: '400px',
+          background:
+            'radial-gradient(ellipse at center, rgba(16,185,129,0.18) 0%, transparent 70%)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      {/* ── Device shell ── portrait: width < height ── */}
+      <div
+        style={{
           position: 'relative',
-          overflow: 'hidden',
+          zIndex: 1,
+          width: '240px',       /* narrower  */
+          height: '420px',      /* taller    */
           flexShrink: 0,
+          background: 'linear-gradient(160deg, #1e293b 0%, #0f172a 100%)',
+          borderRadius: '36px',
+          border: '8px solid #334155',
+          boxShadow:
+            '0 30px 70px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08)',
+          overflow: 'hidden',
         }}
       >
-        {/* Camera / Notch */}
+        {/* Top camera dot */}
         <div
           style={{
             position: 'absolute',
-            top: '10px',
+            top: '14px',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '8px',
-            height: '8px',
+            width: '10px',
+            height: '10px',
             background: '#475569',
             borderRadius: '50%',
             zIndex: 10,
@@ -69,10 +98,13 @@ export function PhoneMockup() {
         <div
           style={{
             position: 'absolute',
-            inset: '4px',
-            borderRadius: '18px',
-            overflow: 'hidden',
+            top: '6px',
+            left: '6px',
+            right: '6px',
+            bottom: '6px',
+            borderRadius: '30px',
             background: '#0f172a',
+            overflow: 'hidden',
           }}
         >
           {screens.map((screen, idx) => {
@@ -88,51 +120,52 @@ export function PhoneMockup() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '24px',
+                  padding: '28px 20px',
                   opacity: isActive ? 1 : 0,
-                  transform: isActive ? 'scale(1)' : 'scale(0.95)',
-                  transition: 'opacity 0.8s ease, transform 0.8s ease',
+                  transform: isActive ? 'scale(1) translateY(0)' : 'scale(0.94) translateY(8px)',
+                  transition: 'opacity 0.7s ease, transform 0.7s ease',
+                  pointerEvents: isActive ? 'auto' : 'none',
                 }}
               >
-                {/* Background glow */}
+                {/* Subtle color wash */}
                 <div
                   style={{
                     position: 'absolute',
                     inset: 0,
-                    background: `linear-gradient(135deg, ${idx === 0 ? '#10b981' : idx === 1 ? '#06b6d4' : '#10b981'}, ${idx === 0 ? '#059669' : idx === 1 ? '#0891b2' : '#06b6d4'})`,
-                    opacity: 0.08,
+                    background: `linear-gradient(135deg, ${screen.gradientStart}18, ${screen.gradientEnd}10)`,
                   }}
                 />
 
-                {/* Icon */}
+                {/* Icon badge */}
                 <div
                   style={{
-                    width: '64px',
-                    height: '64px',
-                    background: `linear-gradient(135deg, ${idx === 0 ? '#10b981, #059669' : idx === 1 ? '#06b6d4, #0891b2' : '#10b981, #06b6d4'})`,
-                    borderRadius: '16px',
+                    position: 'relative',
+                    zIndex: 1,
+                    width: '72px',
+                    height: '72px',
+                    background: `linear-gradient(135deg, ${screen.gradientStart}, ${screen.gradientEnd})`,
+                    borderRadius: '20px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginBottom: '16px',
-                    boxShadow: '0 8px 24px rgba(16,185,129,0.3)',
-                    position: 'relative',
-                    zIndex: 1,
+                    marginBottom: '20px',
+                    boxShadow: `0 10px 30px ${screen.gradientStart}55`,
                   }}
                 >
-                  <IconComp color="white" size={28} />
+                  <IconComp color="white" size={32} />
                 </div>
 
                 {/* Title */}
                 <h3
                   style={{
-                    color: 'white',
-                    fontWeight: 700,
-                    fontSize: '18px',
-                    textAlign: 'center',
-                    marginBottom: '8px',
                     position: 'relative',
                     zIndex: 1,
+                    color: '#f1f5f9',
+                    fontWeight: 700,
+                    fontSize: '17px',
+                    textAlign: 'center',
+                    margin: '0 0 8px',
+                    lineHeight: 1.3,
                   }}
                 >
                   {screen.title}
@@ -141,28 +174,37 @@ export function PhoneMockup() {
                 {/* Subtitle */}
                 <p
                   style={{
-                    color: '#94a3b8',
-                    fontSize: '13px',
-                    textAlign: 'center',
                     position: 'relative',
                     zIndex: 1,
-                    marginBottom: '20px',
+                    color: '#94a3b8',
+                    fontSize: '12px',
+                    textAlign: 'center',
+                    margin: '0 0 24px',
+                    lineHeight: 1.5,
                   }}
                 >
                   {screen.subtitle}
                 </p>
 
-                {/* Dots */}
-                <div style={{ display: 'flex', gap: '6px', position: 'relative', zIndex: 1 }}>
+                {/* Progress dots */}
+                <div
+                  style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    display: 'flex',
+                    gap: '6px',
+                    alignItems: 'center',
+                  }}
+                >
                   {[0, 1, 2].map((i) => (
                     <div
                       key={i}
                       style={{
                         height: '6px',
-                        width: i === activeScreen ? '20px' : '6px',
+                        width: i === activeScreen ? '22px' : '6px',
                         borderRadius: '3px',
-                        background: i === activeScreen ? '#10b981' : '#475569',
-                        transition: 'width 0.3s ease, background 0.3s ease',
+                        background: i === activeScreen ? screen.gradientStart : '#334155',
+                        transition: 'width 0.4s ease, background 0.4s ease',
                       }}
                     />
                   ))}
@@ -176,28 +218,17 @@ export function PhoneMockup() {
         <div
           style={{
             position: 'absolute',
-            bottom: '6px',
+            bottom: '10px',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '60px',
-            height: '3px',
+            width: '56px',
+            height: '4px',
             background: '#475569',
             borderRadius: '2px',
+            zIndex: 10,
           }}
         />
       </div>
-
-      {/* Glow behind */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse at center, rgba(16,185,129,0.15) 0%, transparent 70%)',
-          borderRadius: '32px',
-          zIndex: -1,
-          pointerEvents: 'none',
-        }}
-      />
     </div>
   );
 }
