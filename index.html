@@ -617,7 +617,7 @@
     <div id="modalForm">
       <h2>📩 Enviar Mensagem</h2>
       <p>Preencha o formulário e entraremos em contato em breve.</p>
-      <form action="https://formsubmit.co/contact@mantovanitech.com" method="POST" onsubmit="handleFormSubmit(event)">
+      <form action="#" method="POST" onsubmit="handleFormSubmit(event)">
         <input type="hidden" name="_subject" value="Novo Lead - Mantovani Tech" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_template" value="table" />
@@ -667,7 +667,7 @@
     <div class="popup-badge" id="popupBadge">⏰ Oferta Especial</div>
     <h2 id="popupTitle">Espere! Antes de ir...</h2>
     <p id="popupSubtitle">Deixe seu contato e receba uma <strong>consultoria gratuita</strong> sobre como a tecnologia pode transformar seu negócio.</p>
-    <form action="https://formsubmit.co/contact@mantovanitech.com" method="POST" onsubmit="handlePopupSubmit(event)">
+    <form action="#" method="POST" onsubmit="handlePopupSubmit(event)">
       <input type="hidden" name="_subject" value="Lead Exit Intent - Mantovani Tech" />
       <input type="hidden" name="_captcha" value="false" />
       <div class="form-group">
@@ -931,14 +931,41 @@ document.getElementById('contactModal').addEventListener('click', e => { if (e.t
 function handleFormSubmit(e) {
   e.preventDefault();
   const form = e.target;
-  const data = new FormData(form);
-  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-    .then(() => {
-      document.getElementById('modalForm').style.display = 'none';
-      document.getElementById('modalSuccess').style.display = 'block';
-      setTimeout(closeContactModal, 3000);
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  // Coletar dados do formulário como JSON
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => { data[key] = value; });
+
+  // Usar endpoint AJAX do FormSubmit
+  fetch('https://formsubmit.co/ajax/contact@mantovanitech.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+    .then(result => {
+      if (result.success === 'true' || result.success === true) {
+        document.getElementById('modalForm').style.display = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+        setTimeout(closeContactModal, 4000);
+      } else {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        alert('Erro ao enviar. Tente novamente ou entre em contato pelo WhatsApp.');
+      }
     })
-    .catch(() => { form.submit(); });
+    .catch(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+      // Fallback: envio tradicional
+      form.action = 'https://formsubmit.co/contact@mantovanitech.com';
+      form.submit();
+    });
 }
 
 // Exit intent popup
@@ -952,10 +979,35 @@ document.addEventListener('mouseleave', e => { if (e.clientY <= 0) showPopup(); 
 function handlePopupSubmit(e) {
   e.preventDefault();
   const form = e.target;
-  const data = new FormData(form);
-  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-    .then(() => { closePopup(); })
-    .catch(() => { form.submit(); });
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => { data[key] = value; });
+
+  fetch('https://formsubmit.co/ajax/contact@mantovanitech.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+    .then(result => {
+      if (result.success === 'true' || result.success === true) {
+        closePopup();
+      } else {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    })
+    .catch(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+      form.action = 'https://formsubmit.co/contact@mantovanitech.com';
+      form.submit();
+    });
 }
 </script>
 </body>
