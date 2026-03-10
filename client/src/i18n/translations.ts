@@ -79,6 +79,22 @@ export const translations = {
       privacy: "Privacidade",
       terms: "Termos",
       cookies: "Cookies"
+    },
+    popup: {
+      badge: "⏰ Oferta Especial",
+      title: "Espere! Antes de ir...",
+      subtitle: "Deixe seu contato e receba uma consultoria gratuita sobre como a tecnologia pode transformar seu negócio.",
+      highlight: "consultoria gratuita",
+      name: "Nome",
+      namePlaceholder: "Seu nome",
+      email: "Email",
+      emailPlaceholder: "seu@email.com",
+      phone: "WhatsApp / Telefone",
+      phonePlaceholder: "+55 (00) 00000-0000",
+      submit: "Quero Consultoria Gratuita →",
+      maybe: "Talvez depois",
+      successTitle: "Obrigado!",
+      successText: "Entraremos em contato em breve com uma proposta personalizada."
     }
   },
   en: {
@@ -161,6 +177,22 @@ export const translations = {
       privacy: "Privacy",
       terms: "Terms",
       cookies: "Cookies"
+    },
+    popup: {
+      badge: "⏰ Special Offer",
+      title: "Wait! Before you go...",
+      subtitle: "Leave your contact and receive a free consultation on how technology can transform your business.",
+      highlight: "free consultation",
+      name: "Name",
+      namePlaceholder: "Your name",
+      email: "Email",
+      emailPlaceholder: "your@email.com",
+      phone: "WhatsApp / Phone",
+      phonePlaceholder: "+1 (000) 000-0000",
+      submit: "I Want Free Consultation →",
+      maybe: "Maybe later",
+      successTitle: "Thank you!",
+      successText: "We will contact you soon with a personalized proposal."
     }
   },
   es: {
@@ -243,6 +275,22 @@ export const translations = {
       privacy: "Privacidad",
       terms: "Términos",
       cookies: "Cookies"
+    },
+    popup: {
+      badge: "⏰ Oferta Especial",
+      title: "¡Espera! Antes de irte...",
+      subtitle: "Deja tu contacto y recibe una consultoría gratuita sobre cómo la tecnología puede transformar tu negocio.",
+      highlight: "consultoría gratuita",
+      name: "Nombre",
+      namePlaceholder: "Tu nombre",
+      email: "Email",
+      emailPlaceholder: "tu@email.com",
+      phone: "WhatsApp / Teléfono",
+      phonePlaceholder: "+34 (000) 000-000",
+      submit: "Quiero Consultoría Gratuita →",
+      maybe: "Quizás después",
+      successTitle: "¡Gracias!",
+      successText: "Nos pondremos en contacto pronto con una propuesta personalizada."
     }
   },
   it: {
@@ -325,6 +373,22 @@ export const translations = {
       privacy: "Privacy",
       terms: "Termini",
       cookies: "Cookie"
+    },
+    popup: {
+      badge: "⏰ Offerta Speciale",
+      title: "Aspetta! Prima di andare...",
+      subtitle: "Lascia il tuo contatto e ricevi una consulenza gratuita su come la tecnologia può trasformare il tuo business.",
+      highlight: "consulenza gratuita",
+      name: "Nome",
+      namePlaceholder: "Il tuo nome",
+      email: "Email",
+      emailPlaceholder: "tua@email.com",
+      phone: "WhatsApp / Telefono",
+      phonePlaceholder: "+39 (000) 000-0000",
+      submit: "Voglio Consulenza Gratuita →",
+      maybe: "Forse dopo",
+      successTitle: "Grazie!",
+      successText: "Ti contatteremo presto con una proposta personalizzata."
     }
   },
   de: {
@@ -407,6 +471,22 @@ export const translations = {
       privacy: "Datenschutz",
       terms: "Bedingungen",
       cookies: "Cookies"
+    },
+    popup: {
+      badge: "⏰ Sonderangebot",
+      title: "Warte! Bevor du gehst...",
+      subtitle: "Hinterlasse deine Kontaktdaten und erhalte eine kostenlose Beratung darüber, wie Technologie dein Geschäft transformieren kann.",
+      highlight: "kostenlose Beratung",
+      name: "Name",
+      namePlaceholder: "Dein Name",
+      email: "Email",
+      emailPlaceholder: "deine@email.com",
+      phone: "WhatsApp / Telefon",
+      phonePlaceholder: "+49 (000) 000-0000",
+      submit: "Ich Möchte Kostenlose Beratung →",
+      maybe: "Vielleicht später",
+      successTitle: "Danke!",
+      successText: "Wir werden uns bald mit einem personalisierten Angebot bei Ihnen melden."
     }
   }
 };
