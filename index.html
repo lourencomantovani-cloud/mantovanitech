@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mantovani Tech - Soluções Digitais Inovadoras</title>
+  <meta name="description" content="Desenvolvemos aplicativos, sistemas web e soluções digitais que impulsionam o crescimento da sua empresa. Tecnologia de ponta, design inovador e suporte excepcional." />
+  <meta name="keywords" content="desenvolvimento web, aplicativos mobile, software, tecnologia, Paraguai, Itália, Mantovani Tech" />
+  <meta property="og:title" content="Mantovani Tech - Soluções Digitais Inovadoras" />
+  <meta property="og:description" content="Desenvolvemos aplicativos, sistemas web e soluções digitais que impulsionam o crescimento da sua empresa." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mantovanitech.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f1f5f9, #f8fafc, #f1f5f9); color: #0f172a; min-height: 100vh; }
+
+    /* Container */
+    .container { max-width: 1152px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Header */
+    header { position: fixed; top: 0; width: 100%; z-index: 50; transition: all 0.3s; }
+    header.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem; max-width: 1152px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; text-decoration: none; }
+    .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #10b981, #06b6d4); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 14px; box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-text span:first-child { font-weight: 700; font-size: 1.1rem; color: #0f172a; }
+    .logo-text span:last-child { font-size: 0.7rem; color: #10b981; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { color: #475569; text-decoration: none; font-weight: 500; transition: color 0.2s; font-size: 0.95rem; }
+    .nav-links a:hover { color: #10b981; }
+
+    /* Language Selector */
+    .lang-selector { position: relative; }
+    .lang-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.75rem; border-radius: 8px; background: white; border: 2px solid #10b981; color: #0f172a; cursor: pointer; font-weight: 600; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.2s; }
+    .lang-btn:hover { background: #ecfdf5; }
+    .lang-btn img { width: 24px; height: 16px; object-fit: cover; border-radius: 2px; }
+    .lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: white; border: 2px solid #10b981; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); overflow: hidden; min-width: 160px; display: none; z-index: 100; }
+    .lang-dropdown.open { display: block; }
+    .lang-option { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 1rem; cursor: pointer; font-size: 0.875rem; color: #475569; transition: background 0.15s; border: none; background: none; width: 100%; text-align: left; }
+    .lang-option:hover { background: #ecfdf5; }
+    .lang-option.active { background: #d1fae5; font-weight: 700; color: #059669; }
+    .lang-option img { width: 28px; height: 18px; object-fit: cover; border-radius: 2px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; border: none; text-decoration: none; transition: all 0.2s; font-size: 0.95rem; }
+    .btn-primary { background: linear-gradient(135deg, #10b981, #06b6d4); color: white; box-shadow: 0 4px 16px rgba(16,185,129,0.35); }
+    .btn-primary:hover { background: linear-gradient(135deg, #059669, #0891b2); transform: scale(1.03); box-shadow: 0 6px 24px rgba(16,185,129,0.45); }
+    .btn-outline { background: transparent; color: #10b981; border: 2px solid #10b981; }
+    .btn-outline:hover { background: #ecfdf5; box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
+    .btn-lg { padding: 1rem 2rem; font-size: 1.1rem; }
+    .nav-cta { background: linear-gradient(135deg, #10b981, #06b6d4); color: white; padding: 0.5rem 1.25rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; box-shadow: 0 2px 8px rgba(16,185,129,0.3); transition: all 0.2s; }
+    .nav-cta:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(16,185,129,0.4); }
+
+    /* Mobile menu */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
+    .hamburger svg { width: 24px; height: 24px; }
+    .mobile-menu { display: none; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-top: 2px solid #10b981; padding: 1rem; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 0.6rem 0; color: #475569; text-decoration: none; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
+    .mobile-lang-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin: 0.75rem 0; }
+    .mobile-lang-btn { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0.5rem; border-radius: 8px; background: #f1f5f9; border: none; cursor: pointer; transition: all 0.2s; }
+    .mobile-lang-btn.active { background: #10b981; box-shadow: 0 2px 8px rgba(16,185,129,0.4); }
+    .mobile-lang-btn img { width: 32px; height: 20px; object-fit: cover; border-radius: 2px; }
+    .mobile-lang-btn span { font-size: 10px; font-weight: 700; color: #475569; }
+    .mobile-lang-btn.active span { color: white; }
+    .mobile-cta { width: 100%; margin-top: 0.75rem; text-align: center; justify-content: center; }
+
+    /* Hero */
+    .hero { padding: 8rem 1rem 5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1152px; margin: 0 auto; }
+    .hero-badge { display: inline-block; padding: 0.5rem 1rem; background: #d1fae5; border: 2px solid #10b981; border-radius: 999px; color: #059669; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(16,185,129,0.15); }
+    .hero-title { font-size: 3.5rem; font-weight: 900; line-height: 1.1; background: linear-gradient(135deg, #059669, #0891b2, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1.25rem; }
+    .hero-desc { font-size: 1.15rem; color: #475569; line-height: 1.7; margin-bottom: 2rem; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .phone-mockup { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 32px; padding: 2rem; box-shadow: 0 24px 64px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .mockup-screen { background: linear-gradient(135deg, #0f172a, #1e293b); border-radius: 20px; padding: 2rem; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 1rem; border: 1px solid rgba(255,255,255,0.08); }
+    .mockup-icon { width: 64px; height: 64px; background: linear-gradient(135deg, #10b981, #06b6d4); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(16,185,129,0.4); }
+    .mockup-icon svg { width: 32px; height: 32px; color: white; }
+    .mockup-title { color: white; font-weight: 700; font-size: 1.1rem; }
+    .mockup-sub { color: #94a3b8; font-size: 0.875rem; }
+    .mockup-dots { display: flex; gap: 0.5rem; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; background: #334155; }
+    .mockup-dot.active { background: linear-gradient(135deg, #10b981, #06b6d4); width: 24px; border-radius: 4px; }
+
+    /* Sections */
+    section { padding: 5rem 1rem; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-title { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem; }
+    .section-sub { font-size: 1.1rem; color: #64748b; }
+
+    /* Services Grid */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1152px; margin: 0 auto; }
+    .service-card { background: white; border: 2px solid #e2e8f0; border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .service-card:hover { border-color: #10b981; transform: scale(1.03); box-shadow: 0 8px 32px rgba(16,185,129,0.2); }
+    .service-icon { width: 56px; height: 56px; background: linear-gradient(135deg, #d1fae5, #cffafe); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .service-icon svg { width: 28px; height: 28px; color: #10b981; }
+    .service-card:hover .service-icon svg { color: #0891b2; }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; transition: color 0.2s; }
+    .service-card:hover h3 { color: #10b981; }
+    .service-card p { color: #64748b; font-size: 0.9rem; line-height: 1.6; }
+
+    /* Testimonials */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1152px; margin: 0 auto; }
+    .testimonial-card { background: white; border: 2px solid #e2e8f0; border-radius: 16px; padding: 2rem; transition: all 0.3s; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .testimonial-card:hover { border-color: #10b981; transform: scale(1.03); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .stars { color: #10b981; font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testimonial-text { color: #475569; font-style: italic; margin-bottom: 1.5rem; line-height: 1.7; }
+    .testimonial-name { font-weight: 700; color: #0f172a; }
+    .testimonial-role { font-size: 0.875rem; color: #64748b; }
+
+    /* FAQ */
+    .faq-list { max-width: 768px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item { background: white; border: 2px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .faq-item:hover { border-color: #10b981; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .faq-item.open { border-color: #10b981; }
+    .faq-btn { width: 100%; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: none; border: none; cursor: pointer; text-align: left; }
+    .faq-btn:hover { background: #f8fafc; }
+    .faq-question { font-weight: 700; font-size: 1rem; color: #0f172a; }
+    .faq-chevron { color: #10b981; transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 1rem 1.5rem 1.25rem; border-top: 2px solid #e2e8f0; color: #475569; background: #f8fafc; line-height: 1.7; }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* Contact */
+    .contact-box { background: linear-gradient(135deg, #ecfdf5, #ecfeff); border: 2px solid #10b981; border-radius: 24px; padding: 3rem; max-width: 768px; margin: 0 auto; box-shadow: 0 8px 32px rgba(16,185,129,0.15); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+    .contact-card { background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .contact-card.py { border: 2px solid #10b981; }
+    .contact-card.it { border: 2px solid #06b6d4; }
+    .contact-card h3 { font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 1.25rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem; background: #f8fafc; border-radius: 12px; text-decoration: none; margin-bottom: 0.75rem; transition: all 0.2s; }
+    .contact-link.py-link { border: 2px solid #10b981; }
+    .contact-link.py-link:hover { background: #ecfdf5; box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
+    .contact-link.it-link { border: 2px solid #06b6d4; }
+    .contact-link.it-link:hover { background: #ecfeff; box-shadow: 0 4px 12px rgba(6,182,212,0.2); }
+    .contact-link-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-link-icon.green { background: linear-gradient(135deg, #10b981, #06b6d4); }
+    .contact-link-icon.cyan { background: linear-gradient(135deg, #06b6d4, #10b981); }
+    .contact-link-icon svg { width: 20px; height: 20px; color: white; }
+    .contact-link-label { font-weight: 700; color: #0f172a; font-size: 0.9rem; }
+    .contact-link-value { color: #64748b; font-size: 0.8rem; }
+    .contact-cta { display: flex; justify-content: center; margin-top: 2rem; }
+
+    /* Footer */
+    footer { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-top: 2px solid #e2e8f0; padding: 1.5rem 1rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; max-width: 1152px; margin: 0 auto 1rem; }
+    .footer-brand { display: flex; flex-direction: column; gap: 0.25rem; }
+    .footer-brand-row { display: flex; align-items: center; gap: 0.5rem; }
+    .footer-logo { width: 24px; height: 24px; background: linear-gradient(135deg, #10b981, #06b6d4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 10px; }
+    .footer-brand-name { font-weight: 700; font-size: 0.875rem; color: #0f172a; }
+    .footer-brand-sub { font-size: 0.75rem; color: #64748b; }
+    .footer-col h4 { font-weight: 700; font-size: 0.75rem; color: #0f172a; margin-bottom: 0.5rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
+    .footer-col ul li a { font-size: 0.75rem; color: #64748b; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #10b981; }
+    .footer-contact-item { display: flex; align-items: center; gap: 0.25rem; }
+    .footer-contact-item svg { width: 12px; height: 12px; flex-shrink: 0; }
+    .footer-contact-item.green svg { color: #10b981; }
+    .footer-contact-item.cyan svg { color: #06b6d4; }
+    .footer-bottom { border-top: 2px solid #e2e8f0; padding-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; max-width: 1152px; margin: 0 auto; }
+    .footer-bottom p, .footer-bottom a { font-size: 0.75rem; color: #64748b; text-decoration: none; }
+    .footer-bottom a:hover { color: #10b981; }
+    .footer-links { display: flex; gap: 1rem; }
+
+    /* WhatsApp FAB */
+    .whatsapp-fab { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 64px; height: 64px; background: linear-gradient(135deg, #10b981, #06b6d4); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(16,185,129,0.45); z-index: 40; text-decoration: none; transition: all 0.3s; }
+    .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(16,185,129,0.55); }
+    .whatsapp-fab svg { width: 28px; height: 28px; }
+
+    /* Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 100; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: white; border-radius: 20px; padding: 2rem; max-width: 480px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.2); position: relative; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: #f1f5f9; border: none; border-radius: 8px; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #475569; transition: background 0.2s; }
+    .modal-close:hover { background: #e2e8f0; }
+    .modal h2 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+    .modal p { color: #64748b; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.875rem; color: #374151; margin-bottom: 0.375rem; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.75rem 1rem; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 0.9rem; color: #0f172a; background: white; transition: border-color 0.2s; font-family: inherit; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,0.1); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-submit { width: 100%; padding: 0.875rem; background: linear-gradient(135deg, #10b981, #06b6d4); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+    .form-submit:hover { opacity: 0.9; transform: scale(1.01); }
+    .form-success { text-align: center; padding: 2rem 0; }
+    .form-success-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .form-success h3 { font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; }
+    .form-success p { color: #64748b; }
+
+    /* Popup exit intent */
+    .popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .popup-overlay.open { display: flex; }
+    .popup { background: white; border-radius: 20px; padding: 2rem; max-width: 420px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.25); position: relative; border: 2px solid #10b981; }
+    .popup-badge { display: inline-block; background: #fef3c7; color: #d97706; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 999px; margin-bottom: 1rem; }
+    .popup h2 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+    .popup p { color: #64748b; margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.6; }
+
+    /* Animations */
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .bg-blob { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; animation: pulse 4s ease-in-out infinite; }
+    .bg-blob-1 { top: 0; left: 25%; width: 384px; height: 384px; background: rgba(16,185,129,0.05); }
+    .bg-blob-2 { bottom: 0; right: 25%; width: 384px; height: 384px; background: rgba(6,182,212,0.05); animation-delay: 1s; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-title { font-size: 2.5rem; }
+      .phone-mockup { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 7rem 1rem 3rem; }
+      .section-title { font-size: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background blobs -->
+<div class="bg-blob bg-blob-1"></div>
+<div class="bg-blob bg-blob-2"></div>
+
+<!-- HEADER -->
+<header id="header">
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon">MT</div>
+      <div class="logo-text">
+        <span>Mantovani</span>
+        <span>Tech</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#servicos" data-i18n="nav.servicos">Serviços</a>
+      <a href="#depoimentos" data-i18n="nav.depoimentos">Depoimentos</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#contato" data-i18n="nav.contato">Contato</a>
+      <div class="lang-selector">
+        <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+          <img id="langFlag" src="https://flagcdn.com/w40/br.png" alt="PT" />
+          <span id="langCode">PT</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option active" onclick="setLang('pt')" data-lang="pt"><img src="https://flagcdn.com/w40/br.png" alt="PT" /> Português</button>
+          <button class="lang-option" onclick="setLang('en')" data-lang="en"><img src="https://flagcdn.com/w40/us.png" alt="EN" /> English</button>
+          <button class="lang-option" onclick="setLang('es')" data-lang="es"><img src="https://flagcdn.com/w40/es.png" alt="ES" /> Español</button>
+          <button class="lang-option" onclick="setLang('it')" data-lang="it"><img src="https://flagcdn.com/w40/it.png" alt="IT" /> Italiano</button>
+          <button class="lang-option" onclick="setLang('de')" data-lang="de"><img src="https://flagcdn.com/w40/de.png" alt="DE" /> Deutsch</button>
+        </div>
+      </div>
+      <button class="nav-cta" onclick="window.open('https://wa.me/393920172546?text=Ol%C3%A1%20Mantovani%20Tech,%20gostaria%20de%20conhecer%20seus%20servi%C3%A7os','_blank')" data-i18n="nav.conversar">Conversar</button>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0f172a" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#servicos" onclick="closeMobileMenu()" data-i18n="nav.servicos">Serviços</a>
+    <a href="#depoimentos" onclick="closeMobileMenu()" data-i18n="nav.depoimentos">Depoimentos</a>
+    <a href="#faq" onclick="closeMobileMenu()" data-i18n="nav.faq">FAQ</a>
+    <a href="#contato" onclick="closeMobileMenu()" data-i18n="nav.contato">Contato</a>
+    <div class="mobile-lang-grid">
+      <button class="mobile-lang-btn active" onclick="setLang('pt');closeMobileMenu()" data-lang="pt"><img src="https://flagcdn.com/w40/br.png" alt="PT"/><span>PT</span></button>
+      <button class="mobile-lang-btn" onclick="setLang('en');closeMobileMenu()" data-lang="en"><img src="https://flagcdn.com/w40/us.png" alt="EN"/><span>EN</span></button>
+      <button class="mobile-lang-btn" onclick="setLang('es');closeMobileMenu()" data-lang="es"><img src="https://flagcdn.com/w40/es.png" alt="ES"/><span>ES</span></button>
+      <button class="mobile-lang-btn" onclick="setLang('it');closeMobileMenu()" data-lang="it"><img src="https://flagcdn.com/w40/it.png" alt="IT"/><span>IT</span></button>
+      <button class="mobile-lang-btn" onclick="setLang('de');closeMobileMenu()" data-lang="de"><img src="https://flagcdn.com/w40/de.png" alt="DE"/><span>DE</span></button>
+    </div>
+    <button class="btn btn-primary mobile-cta" onclick="window.open('https://wa.me/393920172546','_blank');closeMobileMenu()" data-i18n="nav.conversar">Conversar</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge" data-i18n="hero.badge">✨ Soluções Digitais Futuristas</div>
+      <h1 class="hero-title" data-i18n="hero.title">Transforme seu Negócio com Tecnologia</h1>
+      <p class="hero-desc" data-i18n="hero.description">Desenvolvemos aplicativos, sistemas web e soluções digitais que impulsionam o crescimento da sua empresa. Tecnologia de ponta, design inovador e suporte excepcional.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary btn-lg" onclick="window.open('https://wa.me/393920172546?text=Ol%C3%A1%20Mantovani%20Tech,%20gostaria%20de%20conhecer%20seus%20servi%C3%A7os','_blank')">
+          <span data-i18n="hero.cta1">Começar Projeto</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn btn-outline btn-lg" onclick="document.getElementById('servicos').scrollIntoView({behavior:'smooth'})">
+          <span data-i18n="hero.cta2">Conhecer Serviços</span>
+        </button>
+        <button class="btn btn-primary btn-lg" onclick="openContactModal('hero')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Enviar Mensagem
+        </button>
+      </div>
+    </div>
+    <div>
+      <div class="phone-mockup">
+        <div class="mockup-screen">
+          <div class="mockup-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="mockup-title" data-i18n="features.development">Desenvolvimento</div>
+          <div class="mockup-sub" data-i18n="features.developmentSub">Web &amp; Mobile</div>
+          <div class="mockup-dots">
+            <div class="mockup-dot active"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="services.title">Nossos Serviços</h2>
+      <p class="section-sub" data-i18n="services.subtitle">Soluções completas para transformar sua visão em realidade</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <h3 data-i18n="services.mobile">Aplicativos Mobile</h3>
+        <p data-i18n="services.mobileSub">Apps iOS e Android nativos, rápidos e confiáveis para seus usuários</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3 data-i18n="services.web">Sistemas Web</h3>
+        <p data-i18n="services.webSub">Plataformas web escaláveis, modernas e com excelente performance</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 data-i18n="services.security">Segurança</h3>
+        <p data-i18n="services.securitySub">Proteção total de dados com criptografia e conformidade LGPD</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 data-i18n="services.integration">Integração de Sistemas</h3>
+        <p data-i18n="services.integrationSub">Conecte seus sistemas com APIs e integrações customizadas</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3 data-i18n="services.infrastructure">Infraestrutura</h3>
+        <p data-i18n="services.infrastructureSub">Hospedagem robusta com 99.9% de uptime garantido</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3 data-i18n="services.support">Suporte 24/7</h3>
+        <p data-i18n="services.supportSub">Equipe dedicada para manutenção e melhorias contínuas</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="depoimentos" style="background: rgba(255,255,255,0.4);">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="testimonials.title">O que Nossos Clientes Dizem</h2>
+      <p class="section-sub" data-i18n="testimonials.subtitle">Histórias de sucesso e transformação digital</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" data-i18n="testimonials.testimonial1">"A Mantovani Tech transformou completamente nossa visão em um produto excepcional. Profissionalismo e qualidade impecável."</p>
+        <div class="testimonial-name">João Silva</div>
+        <div class="testimonial-role">CEO, Tech Startup</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" data-i18n="testimonials.testimonial2">"Aumentamos nossas vendas em 300% após implementar a solução web desenvolvida pela equipe. Recomendo!"</p>
+        <div class="testimonial-name">Maria Santos</div>
+        <div class="testimonial-role">Diretora, E-commerce</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" data-i18n="testimonials.testimonial3">"Suporte excepcional, equipe responsiva e código de qualidade. Parceria perfeita para crescimento."</p>
+        <div class="testimonial-name">Carlos Mendes</div>
+        <div class="testimonial-role">Founder, SaaS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="faq.title">Perguntas Frequentes</h2>
+      <p class="section-sub" data-i18n="faq.subtitle">Tire suas dúvidas sobre nossos serviços</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" id="faq-q1">
+        <button class="faq-btn" onclick="toggleFaq('q1')">
+          <span class="faq-question" data-i18n="faq.q1">Quanto custa um projeto?</span>
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" data-i18n="faq.a1">O valor varia conforme a complexidade e escopo do projeto. Fazemos uma análise detalhada e apresentamos um orçamento personalizado sem compromisso.</div>
+      </div>
+      <div class="faq-item" id="faq-q2">
+        <button class="faq-btn" onclick="toggleFaq('q2')">
+          <span class="faq-question" data-i18n="faq.q2">Qual é o prazo de desenvolvimento?</span>
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" data-i18n="faq.a2">Projetos simples levam 2-4 semanas. Projetos complexos podem levar 2-3 meses. Discutimos prazos realistas durante a proposta.</div>
+      </div>
+      <div class="faq-item" id="faq-q3">
+        <button class="faq-btn" onclick="toggleFaq('q3')">
+          <span class="faq-question" data-i18n="faq.q3">Quem é dono do código?</span>
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" data-i18n="faq.a3">Você é o proprietário total do código. Fornecemos documentação completa e transferência de propriedade intelectual.</div>
+      </div>
+      <div class="faq-item" id="faq-q4">
+        <button class="faq-btn" onclick="toggleFaq('q4')">
+          <span class="faq-question" data-i18n="faq.q4">Oferecem suporte após entrega?</span>
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" data-i18n="faq.a4">Sim! Oferecemos suporte técnico, manutenção e melhorias contínuas. Temos planos de suporte 24/7 disponíveis.</div>
+      </div>
+      <div class="faq-item" id="faq-q5">
+        <button class="faq-btn" onclick="toggleFaq('q5')">
+          <span class="faq-question" data-i18n="faq.q5">Qual é a garantia do projeto?</span>
+          <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer" data-i18n="faq.a5">Garantimos que o projeto funcione conforme especificado. Oferecemos período de testes e ajustes sem custo adicional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contato" style="background: rgba(255,255,255,0.3);">
+  <div class="container">
+    <div class="contact-box">
+      <div class="section-header" style="margin-bottom:0;">
+        <h2 class="section-title" data-i18n="contact.title">Vamos Conversar?</h2>
+        <p class="section-sub" data-i18n="contact.subtitle">Entre em contato conosco para discutir seu próximo projeto</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card py">
+          <h3>🇵🇾 <span data-i18n="contact.py">Paraguai</span></h3>
+          <a href="https://wa.me/393920172546" target="_blank" rel="noopener noreferrer" class="contact-link py-link">
+            <div class="contact-link-icon green">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <div class="contact-link-label" data-i18n="contact.whatsapp">WhatsApp</div>
+              <div class="contact-link-value">+39 392 017 2546</div>
+            </div>
+          </a>
+          <a href="mailto:contact@mantovanitech.com" class="contact-link py-link">
+            <div class="contact-link-icon green">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-link-label" data-i18n="contact.email">Email</div>
+              <div class="contact-link-value">contact@mantovanitech.com</div>
+            </div>
+          </a>
+        </div>
+        <div class="contact-card it">
+          <h3>🇮🇹 <span data-i18n="contact.italy">Itália</span></h3>
+          <a href="https://wa.me/393896665147" target="_blank" rel="noopener noreferrer" class="contact-link it-link">
+            <div class="contact-link-icon cyan">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <div class="contact-link-label" data-i18n="contact.whatsapp">WhatsApp</div>
+              <div class="contact-link-value">+39 389 666 5147</div>
+            </div>
+          </a>
+          <a href="mailto:felipe@mantovanitech.com" class="contact-link it-link">
+            <div class="contact-link-icon cyan">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-link-label" data-i18n="contact.email">Email</div>
+              <div class="contact-link-value">felipe@mantovanitech.com</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <button class="btn btn-primary btn-lg" onclick="window.open('https://wa.me/393920172546?text=Ol%C3%A1%20Mantovani%20Tech,%20gostaria%20de%20iniciar%20uma%20conversa','_blank')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="contact.cta">Iniciar Conversa no WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-row">
+        <div class="footer-logo">MT</div>
+        <span class="footer-brand-name">Mantovani Tech</span>
+      </div>
+      <span class="footer-brand-sub">Soluções digitais inovadoras</span>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="nav.servicos">Serviços</h4>
+      <ul>
+        <li><a href="#servicos">Web</a></li>
+        <li><a href="#servicos">Mobile</a></li>
+        <li><a href="#servicos">Integração</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#depoimentos">Clientes</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contato" data-i18n="nav.contato">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>🇵🇾 PY</h4>
+      <ul>
+        <li class="footer-contact-item green">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          <a href="tel:+393920172546">+39 392 017 2546</a>
+        </li>
+        <li class="footer-contact-item green">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:contact@mantovanitech.com" style="word-break:break-all">contact@mantovanitech.com</a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>🇮🇹 IT</h4>
+      <ul>
+        <li class="footer-contact-item cyan">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          <a href="tel:+393896665147">+39 389 666 5147</a>
+        </li>
+        <li class="footer-contact-item cyan">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:felipe@mantovanitech.com" style="word-break:break-all">felipe@mantovanitech.com</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Mantovani Tech. <span data-i18n="footer.copyright_short">Todos os direitos reservados.</span></p>
+    <div class="footer-links">
+      <a href="#" data-i18n="footer.privacy">Privacidade</a>
+      <a href="#" data-i18n="footer.terms">Termos</a>
+      <a href="#" data-i18n="footer.cookies">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/393920172546" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeContactModal()">✕</button>
+    <div id="modalForm">
+      <h2>📩 Enviar Mensagem</h2>
+      <p>Preencha o formulário e entraremos em contato em breve.</p>
+      <form action="https://formsubmit.co/contact@mantovanitech.com" method="POST" onsubmit="handleFormSubmit(event)">
+        <input type="hidden" name="_subject" value="Novo Lead - Mantovani Tech" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <div class="form-group">
+          <label>Nome *</label>
+          <input type="text" name="nome" placeholder="Seu nome completo" required />
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="seu@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input type="tel" name="whatsapp" placeholder="+55 (00) 00000-0000" />
+        </div>
+        <div class="form-group">
+          <label>Serviço de Interesse</label>
+          <select name="servico">
+            <option value="">Selecione...</option>
+            <option value="App Mobile">Aplicativo Mobile</option>
+            <option value="Sistema Web">Sistema Web</option>
+            <option value="Integração">Integração de Sistemas</option>
+            <option value="Infraestrutura">Infraestrutura</option>
+            <option value="Suporte">Suporte 24/7</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensagem</label>
+          <textarea name="mensagem" placeholder="Descreva seu projeto ou dúvida..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Enviar Mensagem →</button>
+      </form>
+    </div>
+    <div class="form-success" id="modalSuccess" style="display:none;">
+      <div class="form-success-icon">✅</div>
+      <h3>Mensagem enviada!</h3>
+      <p>Recebemos seu contato e responderemos em breve.</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXIT INTENT POPUP -->
+<div class="popup-overlay" id="exitPopup">
+  <div class="popup">
+    <button class="modal-close" onclick="closePopup()">✕</button>
+    <div class="popup-badge">⏰ Oferta Especial</div>
+    <h2>Espere! Antes de ir...</h2>
+    <p>Deixe seu contato e receba uma <strong>consultoria gratuita</strong> sobre como a tecnologia pode transformar seu negócio.</p>
+    <form action="https://formsubmit.co/contact@mantovanitech.com" method="POST" onsubmit="handlePopupSubmit(event)">
+      <input type="hidden" name="_subject" value="Lead Exit Intent - Mantovani Tech" />
+      <input type="hidden" name="_captcha" value="false" />
+      <div class="form-group">
+        <label>Nome *</label>
+        <input type="text" name="nome" placeholder="Seu nome" required />
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" name="email" placeholder="seu@email.com" required />
+      </div>
+      <div class="form-group">
+        <label>WhatsApp</label>
+        <input type="tel" name="whatsapp" placeholder="+55 (00) 00000-0000" />
+      </div>
+      <button type="submit" class="form-submit">Quero Consultoria Gratuita →</button>
+    </form>
+  </div>
+</div>
+
+<script>
+// ===== TRANSLATIONS =====
+const translations = {
+  pt: {
+    "nav.servicos": "Serviços", "nav.depoimentos": "Depoimentos", "nav.faq": "FAQ", "nav.contato": "Contato", "nav.conversar": "Conversar",
+    "hero.badge": "✨ Soluções Digitais Futuristas", "hero.title": "Transforme seu Negócio com Tecnologia",
+    "hero.description": "Desenvolvemos aplicativos, sistemas web e soluções digitais que impulsionam o crescimento da sua empresa. Tecnologia de ponta, design inovador e suporte excepcional.",
+    "hero.cta1": "Começar Projeto", "hero.cta2": "Conhecer Serviços",
+    "features.development": "Desenvolvimento", "features.developmentSub": "Web & Mobile",
+    "services.title": "Nossos Serviços", "services.subtitle": "Soluções completas para transformar sua visão em realidade",
+    "services.mobile": "Aplicativos Mobile", "services.mobileSub": "Apps iOS e Android nativos, rápidos e confiáveis para seus usuários",
+    "services.web": "Sistemas Web", "services.webSub": "Plataformas web escaláveis, modernas e com excelente performance",
+    "services.security": "Segurança", "services.securitySub": "Proteção total de dados com criptografia e conformidade LGPD",
+    "services.integration": "Integração de Sistemas", "services.integrationSub": "Conecte seus sistemas com APIs e integrações customizadas",
+    "services.infrastructure": "Infraestrutura", "services.infrastructureSub": "Hospedagem robusta com 99.9% de uptime garantido",
+    "services.support": "Suporte 24/7", "services.supportSub": "Equipe dedicada para manutenção e melhorias contínuas",
+    "testimonials.title": "O que Nossos Clientes Dizem", "testimonials.subtitle": "Histórias de sucesso e transformação digital",
+    "testimonials.testimonial1": '"A Mantovani Tech transformou completamente nossa visão em um produto excepcional. Profissionalismo e qualidade impecável."',
+    "testimonials.testimonial2": '"Aumentamos nossas vendas em 300% após implementar a solução web desenvolvida pela equipe. Recomendo!"',
+    "testimonials.testimonial3": '"Suporte excepcional, equipe responsiva e código de qualidade. Parceria perfeita para crescimento."',
+    "faq.title": "Perguntas Frequentes", "faq.subtitle": "Tire suas dúvidas sobre nossos serviços",
+    "faq.q1": "Quanto custa um projeto?", "faq.a1": "O valor varia conforme a complexidade e escopo do projeto. Fazemos uma análise detalhada e apresentamos um orçamento personalizado sem compromisso.",
+    "faq.q2": "Qual é o prazo de desenvolvimento?", "faq.a2": "Projetos simples levam 2-4 semanas. Projetos complexos podem levar 2-3 meses. Discutimos prazos realistas durante a proposta.",
+    "faq.q3": "Quem é dono do código?", "faq.a3": "Você é o proprietário total do código. Fornecemos documentação completa e transferência de propriedade intelectual.",
+    "faq.q4": "Oferecem suporte após entrega?", "faq.a4": "Sim! Oferecemos suporte técnico, manutenção e melhorias contínuas. Temos planos de suporte 24/7 disponíveis.",
+    "faq.q5": "Qual é a garantia do projeto?", "faq.a5": "Garantimos que o projeto funcione conforme especificado. Oferecemos período de testes e ajustes sem custo adicional.",
+    "contact.title": "Vamos Conversar?", "contact.subtitle": "Entre em contato conosco para discutir seu próximo projeto",
+    "contact.whatsapp": "WhatsApp", "contact.email": "Email", "contact.location": "Localização",
+    "contact.cta": "Iniciar Conversa no WhatsApp", "contact.py": "Paraguai", "contact.italy": "Itália",
+    "footer.copyright_short": "Todos os direitos reservados.", "footer.privacy": "Privacidade", "footer.terms": "Termos", "footer.cookies": "Cookies"
+  },
+  en: {
+    "nav.servicos": "Services", "nav.depoimentos": "Testimonials", "nav.faq": "FAQ", "nav.contato": "Contact", "nav.conversar": "Talk",
+    "hero.badge": "✨ Futuristic Digital Solutions", "hero.title": "Transform Your Business with Technology",
+    "hero.description": "We develop applications, web systems and digital solutions that drive your company's growth. Cutting-edge technology, innovative design and exceptional support.",
+    "hero.cta1": "Start Project", "hero.cta2": "Know Services",
+    "features.development": "Development", "features.developmentSub": "Web & Mobile",
+    "services.title": "Our Services", "services.subtitle": "Complete solutions to turn your vision into reality",
+    "services.mobile": "Mobile Apps", "services.mobileSub": "Native iOS and Android apps, fast and reliable for your users",
+    "services.web": "Web Systems", "services.webSub": "Scalable, modern web platforms with excellent performance",
+    "services.security": "Security", "services.securitySub": "Complete data protection with encryption and LGPD compliance",
+    "services.integration": "System Integration", "services.integrationSub": "Connect your systems with custom APIs and integrations",
+    "services.infrastructure": "Infrastructure", "services.infrastructureSub": "Robust hosting with 99.9% guaranteed uptime",
+    "services.support": "24/7 Support", "services.supportSub": "Dedicated team for maintenance and continuous improvements",
+    "testimonials.title": "What Our Clients Say", "testimonials.subtitle": "Success stories and digital transformation",
+    "testimonials.testimonial1": '"Mantovani Tech completely transformed our vision into an exceptional product. Professionalism and impeccable quality."',
+    "testimonials.testimonial2": '"We increased our sales by 300% after implementing the web solution developed by the team. I recommend!"',
+    "testimonials.testimonial3": '"Exceptional support, responsive team and quality code. Perfect partnership for growth."',
+    "faq.title": "Frequently Asked Questions", "faq.subtitle": "Clear your doubts about our services",
+    "faq.q1": "How much does a project cost?", "faq.a1": "The value varies according to the complexity and scope of the project. We do a detailed analysis and present a personalized quote without commitment.",
+    "faq.q2": "What is the development timeline?", "faq.a2": "Simple projects take 2-4 weeks. Complex projects can take 2-3 months. We discuss realistic timelines during the proposal.",
+    "faq.q3": "Who owns the code?", "faq.a3": "You are the full owner of the code. We provide complete documentation and intellectual property transfer.",
+    "faq.q4": "Do you offer support after delivery?", "faq.a4": "Yes! We offer technical support, maintenance and continuous improvements. We have 24/7 support plans available.",
+    "faq.q5": "What is the project guarantee?", "faq.a5": "We guarantee that the project works as specified. We offer testing and adjustment period at no additional cost.",
+    "contact.title": "Let's Talk?", "contact.subtitle": "Contact us to discuss your next project",
+    "contact.whatsapp": "WhatsApp", "contact.email": "Email", "contact.location": "Location",
+    "contact.cta": "Start WhatsApp Conversation", "contact.py": "Paraguay", "contact.italy": "Italy",
+    "footer.copyright_short": "All rights reserved.", "footer.privacy": "Privacy", "footer.terms": "Terms", "footer.cookies": "Cookies"
+  },
+  es: {
+    "nav.servicos": "Servicios", "nav.depoimentos": "Testimonios", "nav.faq": "Preguntas", "nav.contato": "Contacto", "nav.conversar": "Hablar",
+    "hero.badge": "✨ Soluciones Digitales Futuristas", "hero.title": "Transforma tu Negocio con Tecnología",
+    "hero.description": "Desarrollamos aplicaciones, sistemas web y soluciones digitales que impulsan el crecimiento de tu empresa. Tecnología de punta, diseño innovador y soporte excepcional.",
+    "hero.cta1": "Iniciar Proyecto", "hero.cta2": "Conocer Servicios",
+    "features.development": "Desarrollo", "features.developmentSub": "Web & Mobile",
+    "services.title": "Nuestros Servicios", "services.subtitle": "Soluciones completas para convertir tu visión en realidad",
+    "services.mobile": "Aplicaciones Móviles", "services.mobileSub": "Aplicaciones iOS y Android nativas, rápidas y confiables",
+    "services.web": "Sistemas Web", "services.webSub": "Plataformas web escalables, modernas y con excelente rendimiento",
+    "services.security": "Seguridad", "services.securitySub": "Protección total de datos con cifrado y cumplimiento LGPD",
+    "services.integration": "Integración de Sistemas", "services.integrationSub": "Conecta tus sistemas con APIs e integraciones personalizadas",
+    "services.infrastructure": "Infraestructura", "services.infrastructureSub": "Hosting robusto con 99.9% de tiempo de actividad garantizado",
+    "services.support": "Soporte 24/7", "services.supportSub": "Equipo dedicado para mantenimiento y mejoras continuas",
+    "testimonials.title": "Lo que Dicen Nuestros Clientes", "testimonials.subtitle": "Historias de éxito y transformación digital",
+    "testimonials.testimonial1": '"Mantovani Tech transformó completamente nuestra visión en un producto excepcional."',
+    "testimonials.testimonial2": '"Aumentamos nuestras ventas en un 300% después de implementar la solución web. ¡Recomiendo!"',
+    "testimonials.testimonial3": '"Soporte excepcional, equipo receptivo y código de calidad. Asociación perfecta."',
+    "faq.title": "Preguntas Frecuentes", "faq.subtitle": "Despeja tus dudas sobre nuestros servicios",
+    "faq.q1": "¿Cuánto cuesta un proyecto?", "faq.a1": "El valor varía según la complejidad y alcance del proyecto. Hacemos un análisis detallado y presentamos un presupuesto personalizado.",
+    "faq.q2": "¿Cuál es el plazo de desarrollo?", "faq.a2": "Los proyectos simples tardan 2-4 semanas. Los proyectos complejos pueden tardar 2-3 meses.",
+    "faq.q3": "¿Quién es dueño del código?", "faq.a3": "Eres el propietario total del código. Proporcionamos documentación completa y transferencia de propiedad intelectual.",
+    "faq.q4": "¿Ofrecen soporte después de la entrega?", "faq.a4": "¡Sí! Ofrecemos soporte técnico, mantenimiento y mejoras continuas con planes 24/7.",
+    "faq.q5": "¿Cuál es la garantía del proyecto?", "faq.a5": "Garantizamos que el proyecto funcione según lo especificado con período de prueba sin costo.",
+    "contact.title": "¿Vamos a Hablar?", "contact.subtitle": "Contáctanos para discutir tu próximo proyecto",
+    "contact.whatsapp": "WhatsApp", "contact.email": "Email", "contact.location": "Ubicación",
+    "contact.cta": "Iniciar Conversación en WhatsApp", "contact.py": "Paraguay", "contact.italy": "Italia",
+    "footer.copyright_short": "Todos los derechos reservados.", "footer.privacy": "Privacidad", "footer.terms": "Términos", "footer.cookies": "Cookies"
+  },
+  it: {
+    "nav.servicos": "Servizi", "nav.depoimentos": "Testimonianze", "nav.faq": "FAQ", "nav.contato": "Contatti", "nav.conversar": "Parlare",
+    "hero.badge": "✨ Soluzioni Digitali Futuriste", "hero.title": "Trasforma il Tuo Business con la Tecnologia",
+    "hero.description": "Sviluppiamo applicazioni, sistemi web e soluzioni digitali che guidano la crescita della tua azienda. Tecnologia all'avanguardia, design innovativo e supporto eccezionale.",
+    "hero.cta1": "Inizia Progetto", "hero.cta2": "Scopri Servizi",
+    "features.development": "Sviluppo", "features.developmentSub": "Web & Mobile",
+    "services.title": "I Nostri Servizi", "services.subtitle": "Soluzioni complete per trasformare la tua visione in realtà",
+    "services.mobile": "App Mobile", "services.mobileSub": "App iOS e Android native, veloci e affidabili per i tuoi utenti",
+    "services.web": "Sistemi Web", "services.webSub": "Piattaforme web scalabili, moderne e con eccellente performance",
+    "services.security": "Sicurezza", "services.securitySub": "Protezione totale dei dati con crittografia e conformità LGPD",
+    "services.integration": "Integrazione Sistemi", "services.integrationSub": "Connetti i tuoi sistemi con API e integrazioni personalizzate",
+    "services.infrastructure": "Infrastruttura", "services.infrastructureSub": "Hosting robusto con 99.9% di uptime garantito",
+    "services.support": "Supporto 24/7", "services.supportSub": "Team dedicato per manutenzione e miglioramenti continui",
+    "testimonials.title": "Cosa Dicono i Nostri Clienti", "testimonials.subtitle": "Storie di successo e trasformazione digitale",
+    "testimonials.testimonial1": '"Mantovani Tech ha trasformato completamente la nostra visione in un prodotto eccezionale."',
+    "testimonials.testimonial2": '"Abbiamo aumentato le nostre vendite del 300% dopo aver implementato la soluzione web. Consiglio!"',
+    "testimonials.testimonial3": '"Supporto eccezionale, team reattivo e codice di qualità. Partnership perfetta per la crescita."',
+    "faq.title": "Domande Frequenti", "faq.subtitle": "Chiarisci i tuoi dubbi sui nostri servizi",
+    "faq.q1": "Quanto costa un progetto?", "faq.a1": "Il valore varia a seconda della complessità del progetto. Facciamo un'analisi dettagliata e presentiamo un preventivo personalizzato.",
+    "faq.q2": "Qual è la tempistica di sviluppo?", "faq.a2": "I progetti semplici richiedono 2-4 settimane. I progetti complessi possono richiedere 2-3 mesi.",
+    "faq.q3": "Chi è il proprietario del codice?", "faq.a3": "Sei il proprietario completo del codice con documentazione e trasferimento della proprietà intellettuale.",
+    "faq.q4": "Offrite supporto dopo la consegna?", "faq.a4": "Sì! Offriamo supporto tecnico, manutenzione e miglioramenti continui con piani 24/7.",
+    "faq.q5": "Qual è la garanzia del progetto?", "faq.a5": "Garantiamo che il progetto funzioni come specificato con periodo di test senza costi aggiuntivi.",
+    "contact.title": "Parliamo?", "contact.subtitle": "Contattaci per discutere il tuo prossimo progetto",
+    "contact.whatsapp": "WhatsApp", "contact.email": "Email", "contact.location": "Posizione",
+    "contact.cta": "Inizia Conversazione WhatsApp", "contact.py": "Paraguay", "contact.italy": "Italia",
+    "footer.copyright_short": "Tutti i diritti riservati.", "footer.privacy": "Privacy", "footer.terms": "Termini", "footer.cookies": "Cookie"
+  },
+  de: {
+    "nav.servicos": "Dienstleistungen", "nav.depoimentos": "Bewertungen", "nav.faq": "FAQ", "nav.contato": "Kontakt", "nav.conversar": "Sprechen",
+    "hero.badge": "✨ Futuristische Digitale Lösungen", "hero.title": "Transformiere Dein Geschäft mit Technologie",
+    "hero.description": "Wir entwickeln Anwendungen, Websysteme und digitale Lösungen, die das Wachstum Ihres Unternehmens vorantreiben. Spitzentechnologie, innovatives Design und außergewöhnlicher Support.",
+    "hero.cta1": "Projekt Starten", "hero.cta2": "Dienstleistungen Kennenlernen",
+    "features.development": "Entwicklung", "features.developmentSub": "Web & Mobile",
+    "services.title": "Unsere Dienstleistungen", "services.subtitle": "Umfassende Lösungen zur Verwirklichung Ihrer Vision",
+    "services.mobile": "Mobile Apps", "services.mobileSub": "Native iOS- und Android-Apps, schnell und zuverlässig",
+    "services.web": "Websysteme", "services.webSub": "Skalierbare, moderne Webplattformen mit hervorragender Leistung",
+    "services.security": "Sicherheit", "services.securitySub": "Vollständiger Datenschutz mit Verschlüsselung",
+    "services.integration": "Systemintegration", "services.integrationSub": "Verbinden Sie Ihre Systeme mit benutzerdefinierten APIs",
+    "services.infrastructure": "Infrastruktur", "services.infrastructureSub": "Robustes Hosting mit 99,9% garantierter Betriebszeit",
+    "services.support": "24/7 Support", "services.supportSub": "Engagiertes Team für Wartung und kontinuierliche Verbesserungen",
+    "testimonials.title": "Was Unsere Kunden Sagen", "testimonials.subtitle": "Erfolgsgeschichten und digitale Transformation",
+    "testimonials.testimonial1": '"Mantovani Tech hat unsere Vision vollständig in ein außergewöhnliches Produkt verwandelt."',
+    "testimonials.testimonial2": '"Wir haben unseren Umsatz um 300% gesteigert nach der Implementierung der Weblösung."',
+    "testimonials.testimonial3": '"Außergewöhnlicher Support, reaktionsschnelles Team und Qualitätscode. Perfekte Partnerschaft."',
+    "faq.title": "Häufig Gestellte Fragen", "faq.subtitle": "Klären Sie Ihre Fragen zu unseren Dienstleistungen",
+    "faq.q1": "Was kostet ein Projekt?", "faq.a1": "Der Wert variiert je nach Komplexität des Projekts. Wir erstellen eine detaillierte Analyse und ein personalisiertes Angebot.",
+    "faq.q2": "Wie lange dauert die Entwicklung?", "faq.a2": "Einfache Projekte dauern 2-4 Wochen. Komplexe Projekte können 2-3 Monate dauern.",
+    "faq.q3": "Wem gehört der Code?", "faq.a3": "Sie sind der vollständige Eigentümer des Codes mit vollständiger Dokumentation.",
+    "faq.q4": "Bieten Sie Support nach der Lieferung an?", "faq.a4": "Ja! Wir bieten technischen Support, Wartung und kontinuierliche Verbesserungen mit 24/7-Plänen.",
+    "faq.q5": "Was ist die Projektgarantie?", "faq.a5": "Wir garantieren, dass das Projekt wie spezifiziert funktioniert mit Testphase ohne zusätzliche Kosten.",
+    "contact.title": "Sprechen Wir?", "contact.subtitle": "Kontaktieren Sie uns, um Ihr nächstes Projekt zu besprechen",
+    "contact.whatsapp": "WhatsApp", "contact.email": "E-Mail", "contact.location": "Standort",
+    "contact.cta": "WhatsApp-Gespräch Starten", "contact.py": "Paraguay", "contact.italy": "Italien",
+    "footer.copyright_short": "Alle Rechte vorbehalten.", "footer.privacy": "Datenschutz", "footer.terms": "Bedingungen", "footer.cookies": "Cookies"
+  }
+};
+
+const langFlags = { pt: 'https://flagcdn.com/w40/br.png', en: 'https://flagcdn.com/w40/us.png', es: 'https://flagcdn.com/w40/es.png', it: 'https://flagcdn.com/w40/it.png', de: 'https://flagcdn.com/w40/de.png' };
+let currentLang = 'pt';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.getElementById('langFlag').src = langFlags[lang];
+  document.getElementById('langCode').textContent = lang.toUpperCase();
+  document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+  document.querySelectorAll('.mobile-lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+  closeLangMenu();
+}
+
+function toggleLangMenu() { document.getElementById('langDropdown').classList.toggle('open'); }
+function closeLangMenu() { document.getElementById('langDropdown').classList.remove('open'); }
+document.addEventListener('click', e => { if (!e.target.closest('.lang-selector')) closeLangMenu(); });
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// Scroll header
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// FAQ accordion
+function toggleFaq(id) {
+  const item = document.getElementById('faq-' + id);
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Contact Modal
+function openContactModal(source) { document.getElementById('contactModal').classList.add('open'); }
+function closeContactModal() {
+  document.getElementById('contactModal').classList.remove('open');
+  document.getElementById('modalForm').style.display = 'block';
+  document.getElementById('modalSuccess').style.display = 'none';
+}
+document.getElementById('contactModal').addEventListener('click', e => { if (e.target === document.getElementById('contactModal')) closeContactModal(); });
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    .then(() => {
+      document.getElementById('modalForm').style.display = 'none';
+      document.getElementById('modalSuccess').style.display = 'block';
+      setTimeout(closeContactModal, 3000);
+    })
+    .catch(() => { form.submit(); });
+}
+
+// Exit intent popup
+let popupShown = false;
+function showPopup() { if (!popupShown) { popupShown = true; document.getElementById('exitPopup').classList.add('open'); } }
+function closePopup() { document.getElementById('exitPopup').classList.remove('open'); }
+document.getElementById('exitPopup').addEventListener('click', e => { if (e.target === document.getElementById('exitPopup')) closePopup(); });
+
+document.addEventListener('mouseleave', e => { if (e.clientY <= 0) showPopup(); });
+
+function handlePopupSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    .then(() => { closePopup(); })
+    .catch(() => { form.submit(); });
+}
+</script>
+</body>
+</html>
